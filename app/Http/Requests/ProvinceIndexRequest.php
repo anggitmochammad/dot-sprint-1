@@ -14,7 +14,7 @@ class ProvinceIndexRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exists:provinces,id'
+            'id' => 'required|exists:provinces,province_id'
         ];
     }
 }

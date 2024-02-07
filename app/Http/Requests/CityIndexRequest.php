@@ -14,7 +14,7 @@ class CityIndexRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exists:cities,id'
+            'id' => 'required|exists:cities,city_id'
         ];
     }
 }

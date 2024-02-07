@@ -19,12 +19,17 @@ class CitySeeder extends Seeder
             ])->get('https://api.rajaongkir.com/starter/city?province=' . $province['id'])->json()['rajaongkir']['results'];
 
             foreach ($cities as $city) {
-                City::create([
-                    'province_id'   => $province['id'],
-                    'type'          => $city['type'],
-                    'name'          => $city['type'] . ' ' . $city['city_name'],
-                    'postal_code'   => $city['postal_code'],
-                ]);
+                City::updateOrCreate(
+                    [
+                        'city_id'          => $city['city_id'],
+                        'province_id'   => $province['id'],
+                    ],
+                    [
+                        'type'          => $city['type'],
+                        'name'          => $city['type'] . ' ' . $city['city_name'],
+                        'postal_code'   => $city['postal_code'],
+                    ]
+                );
             }
         }
     }

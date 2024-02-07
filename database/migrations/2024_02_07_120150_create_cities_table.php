@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Province;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,7 +11,8 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('province_id');
+            $table->integer('city_id');
+            $table->foreignIdFor(Province::class);
             $table->string('type');
             $table->string('name');
             $table->string('postal_code');

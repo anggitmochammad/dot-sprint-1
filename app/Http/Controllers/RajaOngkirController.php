@@ -13,13 +13,13 @@ class RajaOngkirController extends Controller
 {
     public function provinceIndex(ProvinceIndexRequest $request)
     {
-        $province = Province::find($request['id']);
+        $province = Province::where('province_id', $request['id'])->first();
         return ProvinceResponse::make($province);
     }
 
     public function cityIndex(CityIndexRequest $request)
     {
-        $city = City::find($request['id']);
-        return CityResponse::make($city->load('province'));
+        $city = City::with('province')->where('city_id',$request['id'])->first();
+        return CityResponse::make($city);
     }
 }

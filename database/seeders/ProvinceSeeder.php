@@ -10,14 +10,19 @@ class ProvinceSeeder extends Seeder
 {
     public function run()
     {
-            $provinces = Http::withHeaders([
+        $provinces = Http::withHeaders([
             'key' => env('RAJA_ONGKIR_API_KEY')
         ])->get('https://api.rajaongkir.com/starter/province')->json()['rajaongkir']['results'];
 
         foreach ($provinces as $province) {
-            Province::create([
-                'name'        => $province['province'],
-            ]);
+            Province::updateOrCreate(
+                [
+                    'province_id'        => $province['province_id'],
+                ],
+                [
+                    'name'               => $province['province'],
+                ]
+            );
         }
     }
 }
