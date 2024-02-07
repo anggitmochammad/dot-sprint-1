@@ -2,18 +2,22 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Province;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Http;
 
 class ProvinceSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        //
+            $provinces = Http::withHeaders([
+            'key' => env('RAJA_ONGKIR_API_KEY')
+        ])->get('https://api.rajaongkir.com/starter/province')->json()['rajaongkir']['results'];
+
+        foreach ($provinces as $province) {
+            Province::create([
+                'name'        => $province['province'],
+            ]);
+        }
     }
 }
