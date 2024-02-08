@@ -45,13 +45,6 @@ http://127.0.0.1:8000
 <tbody>
   <tr>
     <td>1</td>
-    <td>Login</td>
-    <td>/login</td>
-    <td>Tidak ada</td>
-    <td>GET</td>
-  </tr>
-  <tr>
-    <td>2</td>
     <td>Search Provinsi</td>
     <td>/search/provinces</td>
     <td>id = int</td>
